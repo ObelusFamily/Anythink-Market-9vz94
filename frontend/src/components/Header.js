@@ -47,6 +47,10 @@ const LoggedInView = (props) => {
               src={props.currentUser.image}
               className="user-pic pr-1"
               alt={props.currentUser.username}
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null; // prevents looping
+                currentTarget.src="https://static.productionready.io/images/smiley-cyrus.jpg";
+              }}
             />
             {props.currentUser.username}
           </Link>
