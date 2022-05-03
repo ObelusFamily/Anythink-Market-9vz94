@@ -49,7 +49,7 @@ const LoggedInView = (props) => {
               alt={props.currentUser.username}
               onError={({ currentTarget }) => {
                 currentTarget.onerror = null; // prevents looping
-                currentTarget.src="https://static.productionready.io/images/smiley-cyrus.jpg";
+                currentTarget.src='https://static.productionready.io/images/smiley-cyrus.jpg';
               }}
             />
             {props.currentUser.username}
