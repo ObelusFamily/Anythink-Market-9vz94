@@ -24,7 +24,7 @@ const LoggedOutView = (props) => {
 };
 
 const LoggedInView = (props) => {
-  if (props.currentUser) {
+  if (props?.currentUser) {
     return (
       <ul className="navbar-nav ml-auto">
         {props.currentUser.role === "admin" && (
@@ -47,6 +47,11 @@ const LoggedInView = (props) => {
               src={props.currentUser.image}
               className="user-pic pr-1"
               alt={props.currentUser.username}
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null;
+                currentTarget.src =
+                  "https://static.productionready.io/images/smiley-cyrus.jpg";
+              }}
             />
             {props.currentUser.username}
           </Link>
