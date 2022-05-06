@@ -18,7 +18,6 @@ function saveItem(num) {
       var item = new Item(tmpItem);
       item.seller = user;
       item.save();
-      console.log(item)
     });
    
 }
