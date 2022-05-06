@@ -9,7 +9,7 @@ var User = mongoose.model("User");
 
 function saveItem(num) {
   User.findById("1").then(function (user) {
-    if (!user) {
+    if (user) {
       var tmpItem = {
         title: "item " + num,
       };
