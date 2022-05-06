@@ -1,6 +1,6 @@
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://mongodb:27017/admin')
+
 require("./models/User");
 require("./models/Item");
 
@@ -22,7 +22,7 @@ const saveItem = async (num) => {
     });
    
 }
-for(var i = 0; i < 100; i++){
+for(var i = 101; i < 102; i++){
     saveItem(i);
 
 }
