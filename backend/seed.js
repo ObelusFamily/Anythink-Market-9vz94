@@ -9,7 +9,7 @@ var Item = mongoose.model("Item");
 var User = mongoose.model("User");
 
 
-const saveItem = async (num) => {
+function saveItem(num) {
     User.findById('627139709177580048e354b9')
     .then(function(user) {
     var tmpItem = {
