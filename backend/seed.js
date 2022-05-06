@@ -1,10 +1,10 @@
-
+require("dotenv").config();
 var mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_URI);
+
 
 require("./models/User");
 require("./models/Item");
-
-var mongoose = require("mongoose");
 var Item = mongoose.model("Item");
 var User = mongoose.model("User");
 
