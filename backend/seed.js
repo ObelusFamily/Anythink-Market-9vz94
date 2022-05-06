@@ -11,11 +11,11 @@ makeSeed();
 async function makeSeed(){
     var user = new User();
 
-    user.username = "xomri14";
-    user.email = "xomri14@alink.co.il";
+    user.username = "xomri15";
+    user.email = "xomri15@alink.co.il";
     user.setPassword("12345678");
     user.save().then(async function () {
-      for (var i = 0; i < 101; i++) {
+      for (var i = 0; i < 111; i++) {
         await saveItem(user, i)
       }
       process.exit(0);
@@ -29,7 +29,6 @@ async function saveItem(user,i){
       };
       var item = new Item(tmpItem);
       item.seller = user;
-      console.log(item)
       await item.save()
 }
 
