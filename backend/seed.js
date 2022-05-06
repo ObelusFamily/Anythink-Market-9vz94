@@ -9,19 +9,26 @@ var User = mongoose.model("User");
 makeSeed();
 
 async function makeSeed(){
-    var user = new User();
-
-    user.username = "xomri15";
-    user.email = "xomri15@alink.co.il";
-    user.setPassword("12345678");
-    user.save().then(async function () {
-      for (var i = 0; i < 111; i++) {
-        await saveItem(user, i)
-      }
-      process.exit(0);
-    })
+    for(var n=0; n<101;n++){
+        var user = await saveUser(n)
+        await user.save().then(async function () {
+            for (var i = 0; i < 101; i++) {
+              await saveItem(user, i)
+            }
+        })
+    }
+    process.exit(0);
 }
 
+
+async function saveUser(i) {
+    var user = new User();
+
+    user.username = `myuser${i}`;
+    user.email = `myemailuser${i}@mydomain.com`;
+    user.setPassword("12345678");
+    return user;
+}
 
 async function saveItem(user,i){
     var tmpItem = {
