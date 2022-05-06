@@ -6,22 +6,30 @@ require("./models/User");
 require("./models/Item");
 var Item = mongoose.model("Item");
 var User = mongoose.model("User");
+makeSeed();
 
-var user = new User();
+async function makeSeed(){
+    var user = new User();
 
-user.username = "xomri3";
-user.email = "xomri3@alink.co.il";
-user.setPassword("12345678");
-user.save().then(function () {
-  for (var i = 0; i < 101; i++) {
-    var tmpItem = {
-      title: "newitem " + i,
-    };
-    var item = new Item(tmpItem);
-    item.seller = user;
-    item.save().then(() => {
+    user.username = "xomri14";
+    user.email = "xomri14@alink.co.il";
+    user.setPassword("12345678");
+    user.save().then(async function () {
+      for (var i = 0; i < 101; i++) {
+        await saveItem(user, i)
+      }
       process.exit(0);
-    });
-  }
-});
+    })
+}
+
+
+async function saveItem(user,i){
+    var tmpItem = {
+        title: "verynewitem " + i,
+      };
+      var item = new Item(tmpItem);
+      item.seller = user;
+      console.log(item)
+      await item.save()
+}
 
