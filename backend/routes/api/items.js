@@ -160,7 +160,7 @@ router.post("/", auth.required, function(req, res, next) {
 router.get("/:item", auth.optional, function(req, res, next) {
   Promise.all([
     req.payload ? User.findById(req.payload.id) : null,
-    req.item.populate("seller").execPopulate()
+    req.item.populate("seller")
   ])
     .then(function(results) {
       var user = results[0];
@@ -262,8 +262,8 @@ router.delete("/:item/favorite", auth.required, function(req, res, next) {
 // return an item's comments
 router.get("/:item/comments", auth.optional, function(req, res, next) {
   Promise.resolve(req.payload ? User.findById(req.payload.id) : null)
-    .then(function(user) {
-      return req.item
+    .then(async function(user) {
+      await req.item
         .populate({
           path: "comments",
           populate: {
@@ -275,8 +275,8 @@ router.get("/:item/comments", auth.optional, function(req, res, next) {
             }
           }
         })
-        .execPopulate()
-        .then(function(item) {
+        
+        return (function(item) {
           return res.json({
             comments: req.item.comments.map(function(comment) {
               return comment.toJSONFor(user);
